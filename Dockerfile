@@ -1,18 +1,20 @@
 FROM php:8.3-fpm-alpine
 
-# Instalar dependências do sistema
+# Instalar dependências do sistema e bibliotecas de desenvolvimento
 RUN apk add --no-cache \
     nginx \
     supervisor \
     nodejs \
     npm \
     sqlite \
+    sqlite-dev \
     curl \
     zip \
-    unzip
+    unzip \
+    oniguruma-dev
 
 # Instalar extensões PHP
-RUN docker-php-ext-install pdo_sqlite pdo_mysql
+RUN docker-php-ext-install pdo_sqlite pdo_mysql mbstring
 
 # Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
