@@ -29,7 +29,7 @@ COPY . .
 
 # Instalar dependências e buildar
 RUN composer install --no-dev --optimize-autoloader && \
-    pnpm install && \
+    pnpm install --ignore-scripts && \
     pnpm run build && \
     rm -rf node_modules
 
