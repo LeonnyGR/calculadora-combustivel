@@ -1,0 +1,9 @@
+agora preciso de novas funcionalidade, nao fuja da arquitetura ja presente e nem do layout, nada de tsx, quero somente jsx para o react, nada de emojis tambem, somente icones do fontawesome e antd como lib:
+
+1 - se o veiculo que o usuario selecionou nao tiver o array de city preenchido entao de a ele a opcao de preencher manualmente o consumo, se o "fuel" for flex, entao ele pode preencher o consumo de alcool e gasolina, se o fuel for Gasolina entao so gasolina, se for Alcool entao so alcool, a mesma regra para o highway caso ele venha vazio
+
+2 - o usuario tambem podera ajustar manualmente os consumos existentes caso ele nao esteja de acordo, por exemplo se o veiculo vem setado pela api que ele faz 11,2 no alcool mas o usuario acha que nao e verdade, entao ele pode ajustar
+
+3 - ao preencher o valor do combustivel crie uma mascara para o usuario digitar corretamente o valor em R$, cuide para passar no formato correto para a api
+
+4 - se a marca, modelo, ano ou versao nao existir entao o usuario podera criar manualmente tudo isso

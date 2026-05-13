@@ -1,0 +1,45 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy files to VPS
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='vendor' \
+            --exclude='.env' \
+            --exclude='storage/logs/*' \
+            --exclude='storage/framework/cache/*' \
+            --exclude='storage/framework/sessions/*' \
+            --exclude='storage/framework/views/*' \
+            --exclude='bootstrap/cache/*' \
+            --exclude='database/database.sqlite' \
+            -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+            ./ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:/var/www/lgraiz/
+
+      - name: Run deploy script on VPS
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
+            ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} \
+            "cd /var/www/lgraiz && chmod +x deploy.sh && ./deploy.sh"

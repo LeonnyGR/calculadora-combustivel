@@ -1,0 +1,47 @@
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules
+vendor
+
+# Build outputs
+public/hot
+public/storage
+
+# Storage
+storage/app/*
+!storage/app/.gitignore
+storage/framework/cache/*
+!storage/framework/cache/.gitignore
+storage/framework/sessions/*
+!storage/framework/sessions/.gitignore
+storage/framework/views/*
+!storage/framework/views/.gitignore
+storage/logs/*
+!storage/logs/.gitignore
+
+# Cache
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
+
+# Database
+database/database.sqlite
+
+# IDE
+.idea
+.vscode
+.DS_Store
+
+# Tests
+tests
+phpunit.xml
+.phpunit.result.cache
+
+# CI/CD
+.github
+README.md
+DEPLOY-SIMPLES.md
