@@ -81,7 +81,7 @@ export default function Calculator() {
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
                 <div className="flex-1">
                   <h1 className="text-2xl sm:text-3xl font-bold mb-2">
-                    Calculadora de Combustível
+                    Calculadora de Combustíveis
                   </h1>
                   <p className="text-gray-600 text-sm sm:text-base">
                     Calcule quanto você gastará em sua viagem
